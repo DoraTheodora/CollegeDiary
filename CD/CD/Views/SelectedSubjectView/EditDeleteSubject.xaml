@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup" 
+            xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+            mc:Ignorable="d"
+             x:Class="CD.Views.SelectedSubjectView.EditDeleteSubject"
+             Title="Edit subject"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="Center" Margin="15" Padding="15">
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                         HorizontalOptions="Fill"
+                         VerticalOptions="Center">
+                            <ScrollView>
+                                <StackLayout Margin="10">
+                                    <Label Text="Edit subject" FontSize="17" TextColor="DodgerBlue" HorizontalOptions="CenterAndExpand" Margin="0,0,20,0" FontFamily="{StaticResource Montserrat-Bold}"/>
+                                    <Label></Label>
+                                    <Label FontSize="13" Text="Subject Name *"/>
+                                    <Entry FontSize="13" Placeholder="Subject Name" x:Name="subjectName" ReturnType="Next" Keyboard="Text" FontFamily="{StaticResource Montserrat-Medium}"/>
+                                    <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Please enter a subject name  " IsVisible="False"  x:Name="ErrorName"/>
+                                    <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="This subject name already exists  " IsVisible="False"  x:Name="ErrorNameExists"/>
+
+                                    <Label FontSize="13" Text="Lecturer Name"/>
+                                    <Entry FontSize="13" Placeholder="Lecturer Name" x:Name="lecturerName" ReturnType="Next" Keyboard="Text" FontFamily="{StaticResource Montserrat-Medium}"/>
+
+                                    <StackLayout>
+                                        <Label Text="Lecturer Email" FontSize="13"/>
+                                        <Entry FontSize="13" Placeholder="Lecturer Email" x:Name="lecturerEmail" ReturnType="Next" Keyboard="Email" FontFamily="{StaticResource Montserrat-Medium}"/>
+                                        <Label Padding="0" TextColor="Red" Text="Please enter a valid email" IsVisible="False"  x:Name="EmailError"/>
+                                    </StackLayout>
+
+                                    <Label FontSize="13" Text="Continuous Assessment Weight *" />
+                                    <Entry FontSize="13" Placeholder="%" x:Name="CA" ReturnType="Next" Keyboard="Numeric" IsReadOnly="True" BackgroundColor="#003366" FontFamily="{StaticResource Montserrat-Medium}"/>
+
+                                    <Label FontSize="13" Text="Final Exam Weight"/>
+                                    <Entry FontSize="13" Placeholder="%" x:Name="finalExam" ReturnType="Next" Keyboard="Numeric" IsReadOnly="True" BackgroundColor="#003366" FontFamily="{StaticResource Montserrat-Medium}" />
+                                    <Label></Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Button FontSize="14" x:Name="save_subject_button" Text="Save" Clicked="Save_Subject" Scale="0.9" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" WidthRequest="110" HeightRequest="20"/>
+                                        <Button FontSize="14" Text="Cancel" Clicked="Cancel_Update" Scale="0.9" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" FontAttributes="Bold" CornerRadius="20" WidthRequest="110" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                AnimationType="Ball"
+                IsVisible="false"
+                ViewBoxWidth = "150" 
+                ViewBoxHeight="150"
+                TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</pages:PopupPage>

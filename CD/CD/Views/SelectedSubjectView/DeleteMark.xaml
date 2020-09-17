@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+            xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+            xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+            x:Class="CD.Views.SelectedSubjectView.DeleteMark">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="Center" Margin="15" Padding="15">
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Center">
+                            <Label Text="Are you sure you want" FontSize="17" TextColor="DodgerBlue" HorizontalOptions="Center"/>
+                            <Label Text="to delete this result?" FontSize="17" TextColor="DodgerBlue" HorizontalOptions="Center"/>
+                            <Label></Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Result name:   " FontSize="14"/>
+                                        <Span x:Name="MarkName" FontFamily="{StaticResource Montserrat-Medium}" Text="{Binding subjectL.LecturerName}"  FontSize="13"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Result weight:   "  FontSize="14"/>
+                                        <Span x:Name="MarkWeight" FontFamily="{StaticResource Montserrat-Medium}" Text="{Binding subjectL.LecturerName}"  FontSize="13"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Your result:   "   FontSize="14"/>
+                                        <Span x:Name="MarkResult" FontFamily="{StaticResource Montserrat-Medium}" Text="{Binding subjectL.LecturerName}" FontSize="13"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <Button x:Name="delete_button" Text="Delete" Clicked="delete_mark" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9" />
+                                <Button x:Name="cancel_button" Text="Cancel" Clicked="cancel" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                    AnimationType="Ball"
+                    IsVisible="false"
+                    ViewBoxWidth = "150" 
+                    ViewBoxHeight="150"
+                    TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</pages:PopupPage>

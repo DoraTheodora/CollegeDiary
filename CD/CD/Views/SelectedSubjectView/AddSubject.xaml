@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CD.Views.SelectedSubjectView.AddSubject"
+            xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+            xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+            xmlns:controls="clr-namespace:CD.Controls"
+            xmlns:converter="clr-namespace:CD.Converters"
+            xmlns:viewModel="clr-namespace:CD.ViewModel.Forms" xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{DynamicResource Gray-100}"
+            Title="Add new subject">
+
+    <ContentPage.BindingContext>
+        <viewModel:BusinessRegistrationFormViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Form\Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="HELP" Clicked="info"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <skia:SKCanvasView
+                    x:Name="BackgroundGradient"
+                    Grid.RowSpan="2"
+                    HorizontalOptions="Fill"
+                    PaintSurface="BackgroundGradient_PaintSurface"
+                    VerticalOptions="Fill" />
+
+                    <StackLayout Padding="7,0,7,0">
+                        <StackLayout Spacing="0" Padding="16,10">
+                            <StackLayout IsVisible="False" x:Name="hiden">
+                                <Frame BorderColor="PaleVioletRed" CornerRadius="10">
+                                    <StackLayout>
+                                        <Label          
+                                        FontFamily="{StaticResource Montserrat-Bold}" 
+                                        Text="* The Continuous Assessment and the Final Exam Weight need to add together to 100. "/>
+                                        <Label 
+                                        Text="  - e.g 50 and 50 "/>
+                                        <Label 
+                                        Text="  - e.g 60 and 40 "/>
+                                        <Label 
+                                        FontFamily="{StaticResource Montserrat-Bold}" FontSize="17"
+                                        Text="Definitions: "/>
+                                        <Label Margin="0,5">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="* Continuous Assessment: " FontFamily="{StaticResource Montserrat-Bold}" />
+                                                    <Span Text="The evaluation of a student progress throughout a course of study, distinct from the final exam" FontFamily="{StaticResource Montserrat-Medium}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Margin="0,5">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="* Final Exam: " FontFamily="{StaticResource Montserrat-Bold}" />
+                                                    <Span Text="A test given to students at the end of a course of study " FontFamily="{StaticResource Montserrat-Medium}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout IsVisible="False" x:Name="CA_FE_Error">
+                                <Frame BorderColor="Gray" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                    <StackLayout>
+                                        <Label          
+                                    FontFamily="{StaticResource Montserrat-Bold}" 
+                                    TextColor="Red"
+                                    Text="Subject not added "
+                                    FontSize="13"/>
+                                        <Label 
+                                    FontFamily="{StaticResource Montserrat-Medium}" 
+                                    TextColor="Red"
+                                    FontSize="13"
+                                    Text="The Final Exam Weight and Continuous Assessment Weight need to add up to 100, and the numbers must be positive"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+                            <StackLayout IsVisible="False" x:Name="CA_FE_Decimal">
+                                <Frame BorderColor="Gray" CornerRadius="10" BackgroundColor="WhiteSmoke">
+                                    <StackLayout>
+                                        <Label          
+                                    FontFamily="{StaticResource Montserrat-Bold}" 
+                                    TextColor="Red"
+                                    FontSize="13"
+                                    Text="Subject not added "/>
+                                        <Label 
+                                    FontFamily="{StaticResource Montserrat-Medium}" 
+                                    TextColor="Red"
+                                    FontSize="13"
+                                    Text="Use whole numbers for the Continuous Assessment Weight and Final Exam Weight"/>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
+
+                            <!-- Subject Name -->
+                            <StackLayout>
+                                <Label
+                                Margin="0,24,0,4"
+                                HeightRequest="18" 
+                                FontSize="13"
+                                Text="Subject Name *"/>
+
+                                <border:SfBorder BorderColor="{Binding Source={x:Reference subjectName}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                Style="{StaticResource BusinessFormBorderStyle}">
+                                    <controls:BorderlessEntry
+                                    x:Name="subjectName"
+                                    Keyboard="Text"
+                                    BackgroundColor="#192e4A"
+                                    ReturnType="Next"
+                                    Placeholder="e.g. Mathematics"
+                                    Style="{StaticResource EntryTextBoxStyle}" 
+                                    FontSize="13"/>
+                                </border:SfBorder>
+                                <Label FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" 
+                            Padding="0" TextColor="Red" Text="Please enter valid subject name" IsVisible="False"  x:Name="NameEntryError"/>
+                                <Label FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" 
+                            Padding="0" TextColor="Red" Text="This subject already exists. Please use a different name" IsVisible="False"  x:Name="NameAlreadyExists"/>
+                            </StackLayout>
+
+                            <!-- Lecturer Name -->
+                            <StackLayout>
+                                <Label
+                                Margin="0,24,0,4"
+                                HeightRequest="18" 
+                                FontSize="13"
+                                Text="Lecturer Name "/>
+
+                                <border:SfBorder BorderColor="{Binding Source={x:Reference lecturerName}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                Style="{StaticResource BusinessFormBorderStyle}">
+                                    <controls:BorderlessEntry
+                                    x:Name="lecturerName"
+                                    Keyboard="Text"
+                                    ReturnType="Next"
+                                    Placeholder="e.g. Mary Clark"
+                                    BackgroundColor="#192e4A"
+                                    Style="{StaticResource EntryTextBoxStyle}"
+                                    FontSize="13"/>
+                                </border:SfBorder>
+                            </StackLayout>
+
+                            <!-- Email -->
+                            <StackLayout>
+                                <Label
+                    Margin="0,24,0,4"
+                    HeightRequest="18"
+                    FontSize="13"
+                    Text="Lecturer Email" />
+
+                                <border:SfBorder BorderColor="{Binding Source={x:Reference lecturerEmail}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                Style="{StaticResource BusinessFormBorderStyle}">
+                                    <controls:BorderlessEntry
+                                    x:Name="lecturerEmail"
+                                    Keyboard="Email"
+                                    ReturnType="Next"
+                                    BackgroundColor="#192e4A"
+                                    Placeholder="e.g. mary@it.com"
+                                    Style="{StaticResource EntryTextBoxStyle}"
+                                    FontSize="13"/>
+                                </border:SfBorder>
+                                <Label Padding="0" TextColor="Red" Text="Please enter a valid email" IsVisible="False"  x:Name="EmailError"/>
+                            </StackLayout>
+                            <!-- CA  -->
+                            <StackLayout>
+                                <Label
+                                Margin="0,24,0,4"
+                                HeightRequest="18"
+                                FontSize="13"
+                                Text="Continuous Assessment Weight *"/>
+
+                                <border:SfBorder BorderColor="{Binding Source={x:Reference CA}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                Style="{StaticResource BusinessFormBorderStyle}">
+                                    <controls:BorderlessEntry Keyboard="Numeric" 
+                                    x:Name="CA" 
+                                    ReturnType="Next"
+                                    BackgroundColor="#192e4A"
+                                    Placeholder="e.g 50"
+                                    Style="{StaticResource EntryTextBoxStyle}"
+                                    FontSize="13">
+                                    </controls:BorderlessEntry>
+                                </border:SfBorder>
+                                <Label FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" Padding="0" TextColor="Red" Text="Please enter a whole and positive number as Continuous Assessment Weight" IsVisible="False"  x:Name="CAError"/>
+                            </StackLayout>
+
+                            <!-- Final Exam -->
+                            <StackLayout>
+                                <Label
+                                Margin="0,24,0,4"
+                                HeightRequest="18"
+                                FontSize="13"
+                                Text="Final Exam Weight *"/>
+                                <border:SfBorder BorderColor="{Binding Source={x:Reference finalExam}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}" 
+                                Style="{StaticResource BusinessFormBorderStyle}">
+                                    <controls:BorderlessEntry Keyboard="Numeric" 
+                                    x:Name="finalExam" 
+                                    ReturnType="Next"
+                                    Placeholder="e.g. 50"
+                                    BackgroundColor="#192e4A"
+                                    Style="{StaticResource EntryTextBoxStyle}" 
+                                    FontSize="13">
+                                    </controls:BorderlessEntry>
+                                </border:SfBorder>
+                                <Label FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" Padding="0" TextColor="Red" Text="Please enter a whole and positive number as Final Exam Weight" IsVisible="False"  x:Name="FEError"/>
+                            </StackLayout>
+                            <StackLayout>
+                                <Label></Label>
+                                <Label></Label>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                    <buttons:SfButton
+                                    x:Name="save_subject_button"
+                                    Clicked="Save_Subject"
+                                    HorizontalOptions="Center"
+                                    Margin="0,24,0,0"
+                                    Style="{StaticResource SfButtonStyle}"
+                                    Text="Submit"
+                                    FontSize="14"
+                                    WidthRequest="150" />
+                                    <buttons:SfButton
+                                    Clicked="Cancel_Subject"
+                                    HorizontalOptions="Center"
+                                    Margin="0,24,0,0"
+                                    FontSize="14"
+                                    Style="{StaticResource SfButtonStyle}"
+                                    Text="Cancel"
+                                    WidthRequest="150" />
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                AnimationType="Ball"
+                IsVisible="false"
+                ViewBoxWidth = "150" 
+                ViewBoxHeight="150"
+                TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

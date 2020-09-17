@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:viewModel="clr-namespace:CD.ViewModel.ErrorAndEmpty" 
+             xmlns:svg="clr-namespace:CD.Controls" 
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             x:Class="CD.Views.ErrorAndEmpty.NoInternetConnectionPage">
+    <!--  Binding context for NoInternetConnection page  -->
+    <ContentPage.BindingContext>
+        <viewModel:NoInternetConnectionPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <StackLayout
+                BackgroundColor="White"
+                Spacing="0"
+                VerticalOptions="Center">
+
+                <!--  Display the svg illustration image  -->
+                <svg:SVGImage 
+                    x:Name="ErrorImage"
+                    Margin="{x:OnIdiom Phone='0,0,0,0',
+                                       Desktop='0',
+                                       Tablet='0'}"
+                    HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
+                                                                          AndroidPhonePortrait=200,
+                                                                          AndroidPhoneLandscape=140,
+                                                                          iOSPhonePortrait=200,
+                                                                          iOSPhoneLandscape=140}"
+                    Source = "{Binding ImagePath}"
+                    VerticalOptions="Center"
+                    WidthRequest="{x:OnIdiom Phone=200,
+                                             Desktop=300,
+                                             Tablet=300}" />
+
+                <!--  Label to display header  -->
+                <Label
+                    Margin="0,32,0,8"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Style="{StaticResource LabelStyle}"
+                    Text="{Binding Header}"
+                    VerticalTextAlignment="Center" />
+
+                <!--  Label to display content  -->
+                <Label
+                    Margin="8,0,8,0"
+                    FontFamily="{StaticResource Montserrat-Medium}"
+                    FontSize="16"
+                    Style="{StaticResource LabelStyle}"
+                    Text="You must be connected to the internet to use College Diary App"
+                    VerticalTextAlignment="Center" />
+            </StackLayout>
+
+            <!--  Try again button  -->
+            <button:SfButton
+                Grid.Row="1"
+                Clicked="GoBack"
+                Style="{StaticResource SfGradientButtonStyle}"
+                Text="TRY AGAIN" />
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

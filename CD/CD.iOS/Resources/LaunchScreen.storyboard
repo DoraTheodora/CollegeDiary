@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" launchScreen="YES" initialViewController="1271">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="1270">
+            <objects>
+                <viewController id="1271" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1268"/>
+                        <viewControllerLayoutGuide type="bottom" id="1269"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1272">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="custom" customColorSpace="sRGB" red="0.0980392156862745" green="0.180392156862745" blue="0.290196078431373" alpha="1"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6958" translatesAutoresizingMaskIntoConstraints="NO" image="Images" misplaced="YES" ambiguous="YES">
+                                <rect key="frame" x="40" y="176" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint id="6959" firstItem="6958" firstAttribute="height" secondItem="1272" secondAttribute="height"/>
+                            <constraint id="6960" firstItem="6958" firstAttribute="width" secondItem="1272" secondAttribute="width"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1273" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="450" y="228"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" colorSpace="calibratedRGB" red="0.098039215686274508" green="0.1803921568627451" blue="0.29019607843137257" alpha="1"/>
+    <resources>
+        <image name="Images" width="444" height="441.5"/>
+    </resources>
+</document>

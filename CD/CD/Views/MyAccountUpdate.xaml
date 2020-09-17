@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup" 
+                 xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+                 x:Class="CD.Views.MyAccountUpdate"
+             Title="Update Account"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="Center" Margin="15" Padding="15">
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Center">
+                            <ScrollView>
+                                <StackLayout Margin="10">
+                                    <Label Text="Edit Account" FontSize="17" TextColor="DodgerBlue" HorizontalOptions="CenterAndExpand" Margin="0,0,20,0" FontFamily="{StaticResource Montserrat-Medium}"/>
+                                    <Label></Label>
+                                    <Label Text="Name *"  FontSize="13"/>
+                                    <Entry Placeholder="Name" x:Name="userName" ReturnType="Next" Keyboard="Text" FontSize="13"/>
+                                    <Label Padding="0" FontSize="13" TextColor="Red" Text="Please enter your name " IsVisible="False"  x:Name="ErrorName"/>
+
+                                    <Label Text="Institute *" FontSize="13"/>
+                                    <Entry Placeholder="Institute Name" x:Name="userInstitute" ReturnType="Next" Keyboard="Text" FontSize="13"/>
+                                    <Label Padding="0" FontSize="13" TextColor="Red" Text="Please enter the name of your Institute " IsVisible="False"  x:Name="ErrorInstite"/>
+
+                                    <Label Text="Your email" FontSize="13"/>
+                                    <Entry Placeholder="Email" x:Name="userEmail" ReturnType="Next" Keyboard="Text" FontSize="13" IsReadOnly="True" BackgroundColor="#003366"/>
+
+                                    <Label></Label>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Button x:Name="save_profile_button" Text="Save" Clicked="Save_Account" Scale="0.9" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" WidthRequest="110" FontSize="14" HeightRequest="20"/>
+                                        <Button Text="Cancel" Clicked="Cancel_Update" Scale="0.9" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" FontAttributes="Bold" CornerRadius="20" WidthRequest="110" FontSize="14"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                        AnimationType="Ball"
+                        IsVisible="false"
+                        ViewBoxWidth = "150" 
+                        ViewBoxHeight="150"
+                        TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</pages:PopupPage>

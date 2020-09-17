@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             mc:Ignorable="d"
+             xmlns:sys="clr-namespace:System.Collections.Generic;assembly=netstandard" 
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             x:Class="CD.Views.Calendar.AddCalendarEvent"
+             CloseWhenBackgroundIsClicked="True" >
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="Center" Margin="15" Padding="15">
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                             HorizontalOptions="Fill"
+                             VerticalOptions="Center">
+                            <Label Text="Add calendar event" FontSize="17" FontFamily="{StaticResource Montserrat-Bold}" FontAttributes="Bold" TextColor="DodgerBlue" HorizontalOptions="Center" />
+                            <Label></Label>
+                            <StackLayout>
+                                <Label Text="Name of the event *" FontSize="13"/>
+                                <Entry x:Name="event_name" ReturnType="Next" Keyboard="Text"  Placeholder="e.g. Mathematics Test" FontSize="13" BackgroundColor="#2f5280"/>
+                                <Label FontSize="13" TextColor="Red" Text="Please enter a name " IsVisible="False"  x:Name="ErrorName"/>
+                            </StackLayout>
+
+                            <Label Text="Description" FontSize="13" />
+                            <Entry x:Name="event_description" ReturnType="Next" Keyboard="Text" Placeholder="e.g. Logic Chapter 1, 2" FontSize="13" BackgroundColor="#2f5280"/>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="Start date" FontSize="13"/>
+                                    <DatePicker 
+                                    x:Name="startDate"
+                                    Format="dd/MM/yyyy"
+                                    Date="{Binding selectedDate, Mode=TwoWay}"
+                                    TextColor="WhiteSmoke"
+                                    BackgroundColor="#2f5280"
+                                    FontFamily="{StaticResource Montserrat-Medium}" FontSize="13"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="Start time" FontSize="13"/>
+                                    <TimePicker x:Name="startTimePicker"
+                                    Time="12:00"
+                                    Format="T"
+                                    TextColor="WhiteSmoke"
+                                    BackgroundColor="#2f5280"
+                                    PropertyChanged="OnTimePickerPropertyChanged"
+                                    FontFamily="{StaticResource Montserrat-Medium}" FontSize="13"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout>
+                                    <Label Text="End date" FontSize="13"/>
+                                    <DatePicker 
+                                    x:Name="endDate"
+                                    TextColor="WhiteSmoke"
+                                    Format="dd/MM/yyyy"
+                                    BackgroundColor="#2f5280"
+                                    Date="{Binding selectedDate, Mode=TwoWay}"
+                                    MinimumDate="{Binding selctedDate, Mode=TwoWay}"
+                                    FontFamily="{StaticResource Montserrat-Medium}" FontSize="13"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label Text="End time" FontSize="13"/>
+                                    <TimePicker x:Name="endTimePicker" 
+                                    Time="12:00"
+                                    TextColor="WhiteSmoke"
+                                    Format="T"
+                                    BackgroundColor="#2f5280"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    PropertyChanged="OnTimePickerPropertyChanged"  FontSize="13"/>
+                                </StackLayout>
+                            </StackLayout>
+                            <Label Text="Colors" FontSize="13" Margin="0,10"/>
+                            <buttons:SfSegmentedControl SelectionChanged="Handle_SelectionChanged" 
+                            x:Name="segmentedControl" 
+                            VisibleSegmentsCount="6"
+                            BorderColor="DarkSlateGray"
+                            FontColor="WhiteSmoke"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            Color="Transparent"
+                            FontSize="12"
+                            SelectionTextColor="White">
+                                <buttons:SfSegmentedControl.SelectionIndicatorSettings>
+                                    <buttons:SelectionIndicatorSettings 
+                                Position="Fill"
+                                Color="Orange">
+                                    </buttons:SelectionIndicatorSettings>
+                                </buttons:SfSegmentedControl.SelectionIndicatorSettings>
+                                <sys:List x:TypeArguments="x:String">
+                                    <x:String>Red</x:String>
+                                    <x:String>Orange</x:String>
+                                    <x:String>Pink</x:String>
+                                    <x:String>Blue</x:String>
+                                    <x:String>Green</x:String>
+                                    <x:String>Violet</x:String>
+                                </sys:List>
+                            </buttons:SfSegmentedControl>
+
+                            <Label></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Button x:Name="save_button" Text="Save" Clicked="Save_Event" Scale="0.9" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" HeightRequest="20" WidthRequest="110" />
+                                <Button x:Name="cancel_button" Text="Cancel" Clicked="Cancel_Event" Scale="0.9" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                    AnimationType="Ball"
+                    IsVisible="false"
+                    ViewBoxWidth = "150" 
+                    ViewBoxHeight="150"
+                    TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</pages:PopupPage>

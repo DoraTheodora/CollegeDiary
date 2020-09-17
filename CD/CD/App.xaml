@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:themes = "clr-namespace:CD.Themes;assembly=CD"
+             mc:Ignorable="d"
+             x:Class="CD.App">
+    <Application.Resources>
+        <!-- Background Image -->
+        <x:String x:Key="MountainImage">mountain_light</x:String>
+
+        <!--  Colors  -->
+        <Color x:Key="HeaderColor">#213654</Color>
+        <Color x:Key="ArrowColor">#768ea0</Color>
+        <Color x:Key="BorderColor">#d2d7dd</Color>
+        <Color x:Key="TagColor">#ffa318</Color>
+        <Color x:Key="TabSubTextColor">#96a7dd</Color>
+        <Color x:Key="SubTextColor">#95a8b6</Color>
+        <Color x:Key="TempLabelColor">#ffffff</Color>
+
+        <!--BackgroundGradients-->
+        <Color x:Key="BackgroundGradientStartColor">#5c96e6</Color>
+        <Color x:Key="BackgroundGradientMidColor">#3674c9</Color>
+        <Color x:Key="BackgroundGradientEndColor">#192e4A</Color>
+
+        <!--Guage Gradients-->
+        <Color x:Key="GaugeGradientStartColor">#7A89B1</Color>
+        <Color x:Key="GaugeGradientEndColor">#FB7D80</Color>
+
+        <ResourceDictionary>
+            <!--  Fonts  -->
+            <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String">
+                <On Platform="Android" Value="font-awesome-5-free-solid.otf#Font Awesome 5 Free Solid" />
+                <On Platform="iOS" Value="FontAwesome5FreeSolid" />
+            </OnPlatform>
+            <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String">
+                <On Platform="Android" Value="font-awesome-5-free-regular.otf#Font Awesome 5 Free Regular" />
+                <On Platform="iOS" Value="FontAwesome5FreeRegular" />
+            </OnPlatform>
+
+            <Style x:Key="daysLabelStyle" TargetType="Label">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="LineBreakMode" Value="WordWrap" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="5,2" />
+            </Style>
+            
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#192E4A"/>
+                <Setter Property="BarTextColor" Value="WhiteSmoke"/>
+            </Style>
+            
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="WhiteSmoke"/>
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-SemiBold}"/>
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="WhiteSmoke"/>
+                <Setter Property="PlaceholderColor" Value="#a1b7d4"/>
+                <Setter Property="BackgroundColor" Value="#2f5280"/>
+                <Setter Property="FontFamily" Value="{StaticResource Montserrat-Medium}"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#2f5280"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="BorderColor" Value="#192E4A"/>
+            </Style>
+
+            <ResourceDictionary.MergedDictionaries>
+                <themes:LightTheme/>
+            </ResourceDictionary.MergedDictionaries >
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

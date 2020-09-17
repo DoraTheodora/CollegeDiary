@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+                  mc:Ignorable="d"
+             x:Class="CD.Views.SelectedSubjectView.AddFinalExamToSubject"
+             Title="Add Exam"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="Center" Margin="15" Padding="15">
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                     HorizontalOptions="Fill"
+                     VerticalOptions="Center">
+                            <Label></Label>
+                            <Label Text="Final exam" FontSize="17" TextColor="DodgerBlue" HorizontalOptions="Center"/>
+                            <Label></Label>
+                            <Label Text="Result in % (from 100) *"  FontSize="13"/>
+                            <Entry x:Name="result" ReturnType="Next" Keyboard="Numeric" FontFamily="{StaticResource Montserrat-Medium}" FontSize="13" Placeholder="e.g. 84%"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Your result must be respresented by a number between 0 and 100" IsVisible="False"  x:Name="Error1"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Your result must be a positive decimal or a whole number " IsVisible="False"  x:Name="Error2"/>
+                            <Label></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Button x:Name="save_exam_button" Text="Save" Clicked="Save_Exam" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9"/>
+                                <Button Text="Cancel" Clicked="Cancel_Exam" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9"/>
+                            </StackLayout>
+                            <Label></Label>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                AnimationType="Ball"
+                IsVisible="false"
+                ViewBoxWidth = "150" 
+                ViewBoxHeight="150"
+                TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</pages:PopupPage>

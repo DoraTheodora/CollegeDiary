@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="CD.Views.SignUp.SignUpPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:control="clr-namespace:CD.Controls"
+    xmlns:converter="clr-namespace:CD.Converters"
+    xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:local="clr-namespace:CD.Views.SignUp"
+    xmlns:local1="clr-namespace:CD" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    Title="Sign Up"
+    BackgroundColor="{DynamicResource Gray-200}"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView HorizontalOptions="Center">
+                <ScrollView.VerticalOptions>
+                    <OnIdiom
+                        x:TypeArguments="LayoutOptions"
+                        Default="CenterAndExpand"
+                        Phone="FillAndExpand" />
+                </ScrollView.VerticalOptions>
+
+                <StackLayout
+            Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32',
+                PhoneLandscape='150,32',
+                TabletPortrait='200,50',
+                TabletLandscape='300,50',
+                Desktop='30'}"
+                Spacing="0"
+                VerticalOptions="FillAndExpand"
+                WidthRequest="{OnPlatform Default='-1',
+                UWP='350'}">
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Spacing="24"
+                        VerticalOptions="CenterAndExpand">
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="40"
+                            TextColor="Black" 
+                            Text="College Diary" Margin="0" 
+                            HorizontalOptions="Center"/>
+
+                        <!--  Label to display the title of this page  -->
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            FontSize="18"
+                            HorizontalOptions="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Sign Up"
+                            TextColor="{DynamicResource Gray-900}" />
+
+                        <!--  Label to display the description of this page  -->
+                        <Label
+                            x:Name="text"
+                            Margin="0,-16,0,8"
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            FontSize="14"
+                            Text="and save time for what actually matters"
+                            TextColor="{DynamicResource Gray-800}" />
+
+                        <!--  Entry to get user name from user  -->
+                        <StackLayout>
+                            <border:SfBorder
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                Style="{StaticResource SfBorderStyle}">
+                                <control:BorderlessEntry
+                                    x:Name="NameEntry"
+                                    Keyboard="Text"
+                                    Placeholder="Name *"
+                                    ReturnType="Next"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Style="{StaticResource EntryStyle}"
+                                    Text="{Binding Name}"
+                                    TextColor="{DynamicResource Gray-900}" />
+                            </border:SfBorder>
+                            <Label Padding="0" TextColor="Red" Text="Please enter your name" IsVisible="False"  x:Name="NameError"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <!--  Entry to get college/univeristy from user  -->
+                            <border:SfBorder
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                BorderColor="{Binding Source={x:Reference College_University}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                Style="{StaticResource SfBorderStyle}">
+                                <control:BorderlessEntry
+                                    x:Name="College_University"
+                                    Placeholder="College/University *"
+                                    ReturnType="Next"
+                                    Keyboard="Text"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Style="{StaticResource EntryStyle}"
+                                    Text="{Binding College_University}"
+                                    TextColor="{DynamicResource Gray-900}" />
+                            </border:SfBorder>
+                            <Label Padding="0" TextColor="Red" Text="Please enter your instiute" IsVisible="False"  x:Name="InstituteError"/>
+                        </StackLayout>
+
+                        <!--  Entry to get email ID from user  -->
+                        <StackLayout>
+                            <border:SfBorder
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                BorderColor="{Binding Source={x:Reference SignUpEmailEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                Style="{StaticResource SfBorderStyle}">
+                                <control:BorderlessEntry
+                                    x:Name="SignUpEmailEntry"
+                                    Placeholder="Email *"
+                                    Keyboard="Email"
+                                    ReturnType="Next"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Style="{StaticResource EntryStyle}"
+                                    Text="{Binding SignUpEmailEntry}"
+                                    TextColor="{DynamicResource Gray-900}" />
+                            </border:SfBorder>
+                            <Label Padding="0" TextColor="Red" Text="Please enter a valid email" IsVisible="False"  x:Name="EmailError"/>
+                        </StackLayout>
+
+                        <!--  Entry to get password from user  -->
+                        <StackLayout>
+                            <border:SfBorder
+                                BackgroundColor="{DynamicResource Gray-White}"
+                                BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                Style="{StaticResource SfBorderStyle}">
+                                <control:BorderlessEntry
+                                    x:Name="PasswordEntry"
+                                    IsPassword="true"
+                                    ReturnType="Next"
+                                    Placeholder="Password *"
+                                    PlaceholderColor="{DynamicResource Gray-700}"
+                                    Style="{StaticResource EntryStyle}"
+                                    Text="{Binding Password}"
+                                    TextColor="{DynamicResource Gray-900}" />
+                            </border:SfBorder>
+                            <Label Padding="0" TextColor="Red" Text="The passwords you entered do not match" IsVisible="False"  x:Name="PasswordErrorNotMatching"/>
+                            <Label Padding="0" TextColor="Red" Text="Your password needs to be at least 6 characters" IsVisible="False"  x:Name="PasswordErrorTooShort"/>
+                            <Label Padding="0" TextColor="Red" Text="Please enter a password" IsVisible="False"  x:Name="PasswordEmpty"/>
+                        </StackLayout>
+
+                        <!--  Entry to get the confirm password from user  -->
+                        <border:SfBorder
+                            BackgroundColor="{DynamicResource Gray-White}"
+                            BorderColor="{Binding Source={x:Reference ConfirmPasswordEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                            Style="{StaticResource SfBorderStyle}">
+                            <control:BorderlessEntry
+                                x:Name="ConfirmPasswordEntry"
+                                IsPassword="true"
+                                ReturnType="Done"
+                                Placeholder="Confirm Password *"
+                                PlaceholderColor="{DynamicResource Gray-700}"
+                                Style="{StaticResource EntryStyle}"
+                                Text="{Binding ConfirmPassword}"
+                                TextColor="{DynamicResource Gray-900}" />
+                        </border:SfBorder>
+
+                        <!--  Sign-up button  -->
+                        <buttons:SfButton
+                            x:Name="signup_button"
+                            Command="{Binding SignUpCommand}"
+                            CornerRadius="20"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            Style="{StaticResource SfButtonStyle}"
+                            Text="REGISTER"
+                            Clicked="RegiterNewUser"/>
+                    </StackLayout>
+
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal"
+                        Spacing="1"
+                        VerticalOptions="End">
+
+                        <StackLayout.Padding>
+                            <OnIdiom
+                                x:DataType="Thickness"
+                                Default="0, 48, 0, 0"
+                                Phone="0" />
+                        </StackLayout.Padding>
+
+                        <Label
+                            FontFamily="{StaticResource Montserrat-Medium}"
+                            HorizontalOptions="CenterAndExpand"
+                            HorizontalTextAlignment="Center"
+                            Style="{StaticResource LabelStyle}"
+                            Text="Already have an account?"
+                            TextColor="{DynamicResource Gray-800}"
+                            VerticalTextAlignment="Center" />
+
+                        <buttons:SfButton
+                            Command="{Binding LoginCommand}"
+                            CornerRadius="4"
+                            Style="{StaticResource SfFlatButtonStyle}"
+                            Text="Log In" 
+                            Clicked="LoginPage"/>
+
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                AnimationType="Ball"
+                IsVisible="false"
+                ViewBoxWidth = "150" 
+                ViewBoxHeight="150"
+                TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

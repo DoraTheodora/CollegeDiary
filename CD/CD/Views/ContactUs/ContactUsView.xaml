@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:CD"
+             x:Class="CD.Views.ContactUs.ContactUsView"
+             xmlns:converter="clr-namespace:CD.Converters"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" 
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <skia:SKCanvasView
+                x:Name="BackgroundGradient"
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                PaintSurface="BackgroundGradient_PaintSurface"
+                VerticalOptions="Fill" />
+
+                <StackLayout Padding="7,0,7,0">
+                    <Grid>
+                        <ScrollView HorizontalOptions="Center">
+                            <ScrollView.VerticalOptions>
+                                <OnIdiom
+                                x:TypeArguments="LayoutOptions"
+                                Default="CenterAndExpand"
+                                Phone="FillAndExpand" />
+                            </ScrollView.VerticalOptions>
+
+                            <StackLayout
+                            Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32', PhoneLandscape='150,32', TabletPortrait='200,50', TabletLandscape='300,50', Desktop='30'}"
+                            Spacing="0"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="{OnPlatform Default='-1', UWP='350'}">
+
+                                <Grid RowSpacing="1" VerticalOptions="CenterAndExpand">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{local:ImageResource CD.Images.logo.png}" HeightRequest="250" Margin="30"/>
+
+                                    <!--  Label to display the title of this page  -->
+                                    <Label
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="40"
+                                    TextColor="White"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="College Diary" />
+                                </Grid>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Margin="0,30">
+                                    <Label Text="Hello, "/>
+                                    <Label x:Name="studentName"/>
+                                </StackLayout>
+                                <BoxView Style="{StaticResource SeparatorStyle}" />
+
+                                <!--  Stacklayout for mail id label and icon  -->
+                                <Label Text="Feel free to contact us by email!" Margin="0,10" />
+                                <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Label
+                                    Grid.Column="0"
+                                    Margin="0,5,0,0"
+                                    Style="{StaticResource CommonProfileIconLabelStyle}"
+                                    Text="{StaticResource Mail}" />
+
+                                    <!--  ContactUs-up button  -->
+                                    <buttons:SfButton
+                                    x:Name="contact_button"
+                                    CornerRadius="4"
+                                    FontFamily="{StaticResource Montserrat-Bold}"
+                                    Style="{StaticResource SfFlatButtonStyle}"
+                                    Text="collegediary.app@gmail.com" 
+                                    Clicked="contactus_email_button"
+                                    TextColor="White"
+                                    BackgroundColor="Transparent"/>
+                                </StackLayout>
+                                <BoxView Style="{StaticResource SeparatorStyle}" />
+                                <!--  Stacklayout for mail id label and icon  -->
+                                <Label Text="Or join our Facebook page!" Margin="0,10" />
+                                <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Label
+                                    Grid.Column="0"
+                                    Margin="0,5,0,0"
+                                    Style="{StaticResource CommonProfileIconLabelStyle}"
+                                    Text="{StaticResource FaceBook}" />
+
+                                    <!--  ContactUs-up button  -->
+                                    <buttons:SfButton
+                                    x:Name="facebook_button"
+                                    CornerRadius="4"
+                                    FontFamily="{StaticResource Montserrat-Bold}"
+                                    Style="{StaticResource SfFlatButtonStyle}"
+                                    Text="College Diary Facebook" 
+                                    Clicked="go_to_facebook"
+                                    TextColor="White"
+                                    BackgroundColor="Transparent"/>
+                                </StackLayout>
+                                <BoxView Style="{StaticResource SeparatorStyle}" />
+                                <StackLayout Margin="0,40">
+                                    <Label Text="With love,"></Label>
+                                    <Label Text="College Diary" FontSize="17"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ScrollView>
+                        <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                            AnimationType="Ball"
+                            IsVisible="false"
+                            ViewBoxWidth = "150" 
+                            ViewBoxHeight="150"
+                            TextColor="Red" />
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

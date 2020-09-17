@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="CD.Views.Calendar.SimplePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local1="clr-namespace:CD" 
+    xmlns:xforms1="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms" 
+    xmlns:syncTheme="clr-namespace:Syncfusion.XForms.Themes;assembly=Syncfusion.Core.XForms" 
+    xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    x:Name="simpleCalendarPage"
+    mc:Ignorable="d"
+    Title="Calendar">
+    <ContentPage.ToolbarItems>
+        <!-- HERE SOMETHING -->
+    </ContentPage.ToolbarItems>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <xforms1:SfSchedule x:Name="schedule" ScheduleView="MonthView" ShowAppointmentsInline="True">
+            <xforms1:SfSchedule.MonthViewSettings>
+                <xforms1:MonthViewSettings/>
+            </xforms1:SfSchedule.MonthViewSettings>
+            <xforms1:SfSchedule.AppointmentMapping>
+                <xforms1:ScheduleAppointmentMapping 
+                    SubjectMapping="Name" 
+                    NotesMapping="Description"
+                    StartTimeMapping="EventDate"/>
+            </xforms1:SfSchedule.AppointmentMapping>
+        </xforms1:SfSchedule>
+
+        <Button Image="{local1:ImageResource CD.Images.ic.png}" Grid.Row="0" x:Name="add_calendar_event_button"
+                ContentLayout="Right, 40" HorizontalOptions="End"  BackgroundColor="Transparent"
+                WidthRequest="50" HeightRequest="50" Margin="0,0,20,22" VerticalOptions="End" Clicked="AddEvent"/>
+    </Grid>
+</ContentPage>

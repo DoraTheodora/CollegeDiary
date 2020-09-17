@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+                  mc:Ignorable="d"
+             x:Class="CD.Views.SelectedSubjectView.AddMarkToSubject"
+             Title="Add Result"
+             CloseWhenBackgroundIsClicked="True">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout VerticalOptions="Center" Margin="15" Padding="15">
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                         HorizontalOptions="Fill"
+                         VerticalOptions="Center">
+                            <Label Text="Continuous assessment" FontSize="17"  TextColor="DodgerBlue" HorizontalOptions="Center" FontFamily="{StaticResource Montserrat-SemiBold}"/>
+                            <Label></Label>
+                            <Label Text="Name of the assessment *" FontSize="13"/>
+                            <Entry x:Name="mark_name" ReturnType="Next" Keyboard="Text" FontFamily="{StaticResource Montserrat-Medium}" FontSize="13" Placeholder="e.g. Test Linear Algebra"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Please enter a valid name " IsVisible="False"  x:Name="ErrorNameCA"/>
+
+                            <Label Text="Exam weight *" FontSize="13"/>
+                            <Entry x:Name="weight" ReturnType="Next" Keyboard="Numeric" FontFamily="{StaticResource Montserrat-Medium}" FontSize="13" Placeholder="e.g. 10%"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="The assignment percentage is exceeding the total CA percentage " IsVisible="False"  x:Name="ErrorWeightCA"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Please insert the weight of this Continuous Assessment " IsVisible="False"  x:Name="EmptyWeightCA"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="The Continuous Assessment weight must be higher than 0 " IsVisible="False"  x:Name="HigherThanZeroWeight"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="The Continuous Assessment weight must be a decimal/whole number higher than 0 " IsVisible="False"  x:Name="WholeDecimalWight"/>
+
+                            <Label Text="Result in % (from 100) *" FontSize="13"/>
+                            <Entry x:Name="result" ReturnType="Next" Keyboard="Numeric" FontFamily="{StaticResource Montserrat-Medium}" FontSize="13" Placeholder="e.g. 79%"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Your result must be between 0 and 100 " IsVisible="False"  x:Name="ErrorResultCA"/>
+                            <Label Padding="0" FontSize="13" FontFamily="{StaticResource Montserrat-Medium}" TextColor="Red" Text="Please insert your result " IsVisible="False"  x:Name="EmptyResultCA"/>
+
+                            <Label></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                <Button x:Name="save_ca_button" Text="Save" Clicked="Save_Mark" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9"/>
+                                <Button Text="Cancel" Clicked="Cancel_Mark" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                AnimationType="Ball"
+                IsVisible="false"
+                ViewBoxWidth = "150" 
+                ViewBoxHeight="150"
+                TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+    
+</pages:PopupPage>

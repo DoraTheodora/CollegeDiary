@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup;assembly=Rg.Plugins.Popup" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:converter="clr-namespace:CD.Converters" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+                 mc:Ignorable="d"
+             x:Class="CD.Views.Calendar.EventSelected"
+             CloseWhenBackgroundIsClicked="True"
+             BackgroundColor="#192E4A">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Margin="10" Padding="10" >
+            <Grid>
+                <ScrollView>
+                    <Frame>
+                        <StackLayout 
+                         HorizontalOptions="Fill"
+                         VerticalOptions="Center">
+                            <StackLayout Margin="0">
+                                <Frame x:Name="SubjectFrame">
+                                    <StackLayout Orientation="Horizontal" x:Name="StackLayoutFrame">
+                                        <Label x:Name="AppointmentSubject" FontFamily="{StaticResource Montserrat-SemiBold}" TextColor="White" FontSize="17" HorizontalOptions="StartAndExpand"/>
+                                        <buttons:SfButton
+                                        HorizontalTextAlignment="End"
+                                        x:Name="edit_event_button"
+                                        Command="{Binding editEvent}"
+                                        CornerRadius="4"
+                                        Style="{StaticResource SfFlatButtonStyle}"
+                                        Text="Edit" 
+                                        Clicked="EditEvent"
+                                        TextColor="NavajoWhite"
+                                        FontFamily="13"/>
+                                    </StackLayout>
+                                </Frame>
+                                <StackLayout Margin="10">
+                                    <Label Text="Description:" FontFamily="{StaticResource Montserrat-Bold}" FontSize="13"/>
+                                    <Label x:Name="AppointmentDescription"  FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="13"/>
+                                    <Label/>
+                                    <StackLayout>
+                                        <Label Text="Start date and time:" FontFamily="{StaticResource Montserrat-Bold}" FontSize="13"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label x:Name="StartingDate"  FontFamily="{StaticResource Montserrat-SemiBold}" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                            <Label x:Name="StartingTime"  FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="13"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label/>
+                                    <StackLayout>
+                                        <Label Text="End date and time:"  FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="13"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label x:Name="EndDate"  FontFamily="{StaticResource Montserrat-SemiBold}" HorizontalOptions="StartAndExpand" FontSize="13"/>
+                                            <Label x:Name="EndTime"  FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="13"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <Label/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Button x:Name="delete_event_button" Text="Delete" Clicked="delete_event" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9"/>
+                                        <Button x:Name="cancel_event_button" Text="Cancel" Clicked="cancel_event" FontFamily="{StaticResource Montserrat-SemiBold}" BackgroundColor="DodgerBlue" TextColor="White" CornerRadius="20" FontSize="14" WidthRequest="110" Scale="0.9"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </ScrollView>
+            </Grid>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                    AnimationType="Ball"
+                    IsVisible="false"
+                    ViewBoxWidth = "150" 
+                    ViewBoxHeight="150"
+                    TextColor="Red" />
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

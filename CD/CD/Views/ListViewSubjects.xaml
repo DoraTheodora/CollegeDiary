@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CD.Views.ListViewSubjects"
+             xmlns:controls="clr-namespace:CD.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:CD"
+             xmlns:viewModel="clr-namespace:CD.ViewModel" xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms" xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BackgroundColor="{DynamicResource Gray-White}"
+             NavigationPage.HasNavigationBar="False">
+     <ContentPage.BindingContext>
+        <viewModel:BaseViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="List\Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <skia:SKCanvasView
+                x:Name="BackgroundGradient"
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                PaintSurface="BackgroundGradient_PaintSurface"
+                VerticalOptions="Fill" />
+
+            <StackLayout Padding="7,0,7,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <StackLayout x:Name="TitleView"
+                            Padding="16,8"
+                            Grid.Row="0"
+                            HeightRequest="64"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="FillAndExpand"
+                            Orientation="Horizontal"
+                            Spacing="0">
+
+                            <StackLayout
+                                x:Name="TitleSubjectView"
+                                HorizontalOptions="FillAndExpand"
+                                IsVisible="True"
+                                Orientation="Horizontal"
+                                Spacing="0"
+                                VerticalOptions="FillAndExpand">
+
+                                <!--  Back button command  -->
+                                <buttons:SfButton x:Name="backButton"
+                                    CornerRadius="4"
+                                    Style="{StaticResource IconButtonStyle}"
+                                    IsEnabled="False"/>
+
+                                <!--  Songs page Title  -->
+                                <Label Margin="16,0"
+                                    HeightRequest="24"
+                                    FontFamily="{StaticResource Montserrat-Bold}"
+                                    FontSize="16"
+                                    HorizontalOptions="CenterAndExpand"
+                                    LineHeight="1.25"
+                                    Text="Your Subjects"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+                            </StackLayout>
+
+                            <StackLayout x:Name="Search"
+                                HorizontalOptions="EndAndExpand"
+                                IsVisible="False"
+                                Orientation="Horizontal"
+                                Spacing="0">
+
+                                <!--  Back to title layout  -->
+                                <buttons:SfButton x:Name="BackToTitle"
+                                Clicked="BackToTitle_Clicked"
+                                Style="{StaticResource NavigationBarButtonStyle}"
+                                Text="{StaticResource Back}" />
+
+                                <!--  Rounded Search Entry  -->
+                                <border:SfBorder Style="{DynamicResource SfBorderStyleSearch}">
+                                    <controls:BorderlessEntry x:Name="SearchEntry"
+                                        BindingContext="{x:Reference LstSubjects}"
+                                        HorizontalOptions="FillAndExpand"
+                                        Placeholder=" Search here"
+                                        Text="{Binding SearchText, Mode=TwoWay}"
+                                        TextColor="WhiteSmoke"                                      
+                                        Style="{StaticResource SearchEntryStyle}"/>
+                                </border:SfBorder>
+                            </StackLayout>
+
+                            <!--  Search Button  -->
+                            <buttons:SfButton x:Name="SearchButton"
+                                IsVisible="True"
+                                TextColor="WhiteSmoke"
+                                Clicked="SearchButton_Clicked"
+                                Style="{StaticResource NavigationBarButtonStyle }"
+                                Text="{StaticResource Search}" />
+
+                        </StackLayout>
+                        <StackLayout  Grid.Row="1" Spacing="0">
+                            <ScrollView>
+                                <StackLayout>
+                                    <!-- Seperator -->
+                                    <BoxView Style="{StaticResource BoxViewStyle}" />
+                                    <StackLayout HorizontalOptions="Center" x:Name="Subject_text" IsVisible="False" Margin="5">
+                                        <Label Text="There are no subjects in your list"  FontFamily="{StaticResource Montserrat-Medium}" FontSize="13" HorizontalOptions="Center"/>
+                                        <Label Text="Clike the 'Add Subject' button to add a new subject"  FontFamily="{StaticResource Montserrat-Medium}" FontSize="12" HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                    <controls:SearchableSubjectList x:Name="LstSubjects"
+                                        AutoFitMode="Height"
+                                        AllowSwiping="True"
+                                        IsScrollBarVisible="false"
+                                        FocusBorderThickness="0"
+                                        ItemSpacing="0"
+                                        SearchText="{Binding SearchText}"
+                                        SelectionBackgroundColor="Transparent"
+                                        RowSpacing="0"
+                                        TapCommand="{Binding ItemSelectedCommand}"
+                                        VerticalOptions="FillAndExpand"
+                                        ItemTapped="LstSubjects_ItemSelected">
+
+                                        <controls:SearchableSubjectList.ItemTemplate>
+                                            <DataTemplate>
+                                                <ViewCell>
+                                                    <StackLayout>
+                                                        <Grid ColumnSpacing="0" RowSpacing="0" >
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="*" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <StackLayout Grid.Column="0" HorizontalOptions="FillAndExpand" 
+                                                                VerticalOptions="FillAndExpand" Spacing="0" >
+                                                                <!--  Name of the item  -->
+                                                                <Label Margin="16,13,0,0"
+                                                                    HeightRequest="24"
+                                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                    FontSize="14"
+                                                                    TextColor="White"   
+                                                                    LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                                                    Text="{Binding SubjectName}" />
+
+                                                                <!--  Composer of the item  -->
+                                                                <Label  Margin="16,0,0,12"
+                                                                    HeightRequest="21"
+                                                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                                                    FontSize="12"
+                                                                    LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                                                                    Text="{Binding LecturerName}"
+                                                                    TextColor="WhiteSmoke" />
+                                                            </StackLayout>
+
+                                                        </Grid>
+                                                        <!-- Seperator -->
+                                                        <BoxView Style="{StaticResource BoxViewStyle}" />
+                                                    </StackLayout>
+                                                </ViewCell>
+                                            </DataTemplate>
+                                        </controls:SearchableSubjectList.ItemTemplate>
+                                    </controls:SearchableSubjectList>
+                                </StackLayout>
+                            </ScrollView>
+                        </StackLayout>
+                    </Grid>
+                    <buttons:SfButton Text="Add Subject" 
+                        Grid.Row="0" 
+                        x:Name="add_subject" 
+                        Margin="0,24,22,22" 
+                        Style="{StaticResource SfButtonStyle}"
+                        FontFamily="{StaticResource Montserrat-Bold}"
+                        HorizontalOptions="End" 
+                        FontSize="13"               
+                        WidthRequest="150" 
+                        HeightRequest="40"  
+                        VerticalOptions="End" 
+                        Clicked="load_add_subject"/>
+                </Grid>
+            </StackLayout>
+            <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                AnimationType="Ball"
+                IsVisible="false"
+                ViewBoxWidth = "150" 
+                ViewBoxHeight="150"
+                TextColor="Red" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

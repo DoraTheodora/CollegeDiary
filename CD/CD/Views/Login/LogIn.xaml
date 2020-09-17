@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:converters="clr-namespace:CD.Converters"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:CD"
+             x:Class="CD.Views.Login.LogIn"
+             
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:control="clr-namespace:CD.Controls"
+             xmlns:converter="clr-namespace:CD.Converters"
+             xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms" 
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <skia:SKCanvasView
+                x:Name="BackgroundGradient"
+                Grid.RowSpan="2"
+                HorizontalOptions="Fill"
+                PaintSurface="BackgroundGradient_PaintSurface"
+                VerticalOptions="Fill" />
+
+            <StackLayout Padding="7,0,7,0">
+                <Grid>
+                    <ScrollView HorizontalOptions="Center">
+                        <ScrollView.VerticalOptions>
+                            <OnIdiom
+                                x:TypeArguments="LayoutOptions"
+                                Default="CenterAndExpand"
+                                Phone="FillAndExpand" />
+                        </ScrollView.VerticalOptions>
+
+                        <StackLayout
+                            Margin="{core:OnPlatformOrientationThickness PhonePortrait='20,32', PhoneLandscape='150,32', TabletPortrait='200,50', TabletLandscape='300,50', Desktop='30'}"
+                            Spacing="0"
+                            VerticalOptions="FillAndExpand"
+                            WidthRequest="{OnPlatform Default='-1', UWP='350'}">
+
+                            <Grid RowSpacing="0" VerticalOptions="CenterAndExpand">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Source="{local:ImageResource CD.Images.logo.png}" HeightRequest="250" Margin="30"/>
+
+                                <!--  Label to display the title of this page  -->
+                                <Label
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="40"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="College Diary" />
+
+                                <!--  Label to display the description of this page  -->
+                                <Label
+                                    Grid.Row="1"
+                                    Margin="0,8"
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="" />
+
+                                <!--  Entry to get email ID from user  -->
+                                <border:SfBorder
+                                    Grid.Row="2"
+                                    BorderColor="Transparent"
+                                    Style="{StaticResource SfBorderStyle}">
+                                    <control:BorderlessEntry
+                                        x:Name="EmailEntry"
+                                        Keyboard="Email"
+                                        Placeholder="Email"                            
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Email}"  />
+                                </border:SfBorder>
+                                <Label Grid.Row ="3"  TextColor="Red" Text="Please enter a valid email" IsVisible="False"  x:Name="EmailError"/>
+                                <Label Grid.Row="4" Padding="0.24"/>
+                                <!--  Entry to get password from user  -->
+                                <border:SfBorder
+                                    Grid.Row="5"
+                                    BorderColor="{Binding Source={x:Reference PasswordEntry}, Path=IsFocused, ConverterParameter=0}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                    <control:BorderlessEntry
+                                        x:Name="PasswordEntry"
+                                        IsPassword="True"
+                                        Placeholder="Password"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Password}"  />
+                                </border:SfBorder>
+                                <Label Grid.Row ="6" TextColor="Red" Text="Please enter your password" IsVisible="False"  x:Name="PasswordError"/>
+
+
+                                <!--  Forgot password link  -->
+                                <Label
+                                    x:Name="ForgotPasswordLabel"
+                                    Grid.Row="7"
+                                    Margin="0,16"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="12"
+                                    HorizontalOptions="End"
+                                    Text="FORGOT PASSWORD?"
+                                    TextColor="White">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ForgotPasswordPage" Command="{Binding ForgotPasswordCommand}" CommandParameter="{x:Reference ForgotPasswordLabel}"  />
+                                    </Label.GestureRecognizers>
+                                </Label>
+
+                                <!--  Login button  -->
+                                <buttons:SfButton
+                                    Grid.Row="8"
+                                    Margin="0,16"
+                                    Clicked="Login"
+                                    Command="{Binding LoginCmd}"
+                                    Style="{StaticResource SfButtonStyle}"
+                                    Text="LOG IN" 
+                                    x:Name="Login_Button"/>
+                            </Grid>
+
+                            <StackLayout
+                                HorizontalOptions="Center"
+                                Orientation="Horizontal"
+                                Spacing="1"
+                                VerticalOptions="End">
+
+                                <StackLayout.Padding>
+                                    <OnIdiom
+                                        x:DataType="Thickness"
+                                        Default="0, 48, 0, 0"
+                                        Phone="0" />
+                                </StackLayout.Padding>
+
+                                <Label
+                                    FontFamily="{StaticResource Montserrat-Medium}"
+                                    HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center"
+                                    Style="{StaticResource LabelStyle}"
+                                    Text="Don't have an account?"
+                                    VerticalTextAlignment="Center" />
+
+                                <!--  Sign-up button  -->
+                                <buttons:SfButton
+                                    x:Name="sign_up_button"
+                                    Command="{Binding SignUpCommand}"
+                                    CornerRadius="4"
+                                    FontFamily="{StaticResource Montserrat-Bold}"
+                                    Style="{StaticResource SfFlatButtonStyle}"
+                                    Text="Sign Up" 
+                                    Clicked="SignUpPage"
+                                    TextColor="PaleVioletRed"/>
+                            </StackLayout>
+                            <buttons:SfButton
+                                Margin="15"
+                                x:Name="Privacy_policy_button"
+                                CornerRadius="4"
+                                VerticalOptions="End"
+                                FontFamily="{StaticResource Montserrat-Bold}"
+                                Style="{StaticResource SfFlatButtonStyle}"
+                                Text="PRIVACY POLICY" 
+                                FontSize="13"
+                                Clicked="Privacy_policy"
+                                TextColor="PaleVioletRed"/>
+                        </StackLayout>
+                    </ScrollView>
+                    <busyindicator:SfBusyIndicator x:Name="busyindicator"
+                        AnimationType="Ball"
+                        IsVisible="false"
+                        ViewBoxWidth = "150" 
+                        ViewBoxHeight="150"
+                        TextColor="Red" />
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>
