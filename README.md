@@ -2,6 +2,10 @@
 <a href="https://ibb.co/tsz2rkb"><img src="https://i.ibb.co/mq0yW1H/IMG-0974.jpg" alt="IMG-0974" border="0"></a>
 
 The College Diary Mobile app is a mobile aplication that can be found on Google Play and Apple Store, dedicated to students. 
+
+- <p>Apple Store <a href="https://apps.apple.com/tt/app/college-diary/id1528772909?ign-mpt=uo%3D2">College Diary</a></p>
+- <p>Google Play <a href="https://play.google.com/store/apps/details?id=com.companyname.cd&gl=IE">College Diary</a></p>
+
 The app tracks the student's academic progress:
   - Each subject progress
   - Over all progress
