@@ -60,7 +60,7 @@ The app tracks the student's academic progress:
  <b>Digital Artists</b>
   - <p><a href="https://www.linkedin.com/in/osamaabouhajar/">Osama Abou Hajar</a></p>
   - <p><a href="https://www.linkedin.com/in/alexandru-moisa/">Alexandru Moisa</a></p>
-  - <p><a href="https://www.linkedin.com/in/claudia-pu%C8%99ca%C8%99u-9673711b6/">Claudia Puscasu</a></p>
+  - <p><a href="https://www.linkedin.com/in/claudia-puscasu/">Claudia Puscasu</a></p>
   - <p>Robert Kamenicky</p>
   
 <b>Agile Development and Mentors</b>
