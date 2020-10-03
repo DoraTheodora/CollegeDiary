@@ -44,6 +44,9 @@ The app tracks the student's academic progress:
   - <p> <a href="https://www.syncfusion.com/company/case-studies/education-non_profit/no-need-to-start-your-app-from-scratchuse-syncfusions-xamarin-suite">No Need to Start Your App from Scratch—Use Syncfusion’s Xamarin Suite</a></p>
 <b>.net Rocks Podcast </b>
   - <p> <a href="https://www.dotnetrocks.com/?show=1704">Starting with Xamarin with Theodora Tataru</a></p>
+<b>Live Shows </b>
+  - <p> <a href="https://www.youtube.com/watch?v=Ht99b8Bmrhc">Xamarin Community Standup - Oct 1, 2020 - Community member Theodora shows off her College Diary app</a></p>
+  - <p> <a href="https://www.youtube.com/watch?v=-JEY1KVqKtU&t=9s">On .NET Live - Building a College Diary with Xamarin.Forms</a></p>
 
     
 # Credits
