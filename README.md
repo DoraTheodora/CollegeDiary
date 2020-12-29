@@ -63,6 +63,7 @@ The app tracks the student's academic progress:
 <b>Live Shows </b>
   - <p> <a href="https://www.youtube.com/watch?v=Ht99b8Bmrhc">Xamarin Community Standup - Oct 1, 2020 - Community member Theodora shows off her College Diary app</a></p>
   - <p> <a href="https://www.youtube.com/watch?v=-JEY1KVqKtU&t=9s">On .NET Live - Building a College Diary with Xamarin.Forms</a></p>
+  - <p> <a href="https://www.youtube.com/watch?v=RuIANKINwgk">.NET Conf 2020 Student Showcase | Featuring Theodora Tataru</a></p>
 
     
 # Credits
